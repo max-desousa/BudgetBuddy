@@ -18,11 +18,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.budgetbuddy.R
+import com.example.budgetbuddy.data.main.MainViewModel
 
 @Composable
 fun BudgetBuddyApp(modifier: Modifier = Modifier) {
     val monthlyLimit : Int = 69
     var overBudget : Boolean = false
+    val viewModel : MainViewModel = MainViewModel()
     Column (
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -33,7 +35,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
         SimpleDisplayCard(
             _string = stringResource(id = R.string.monthly_limit),
             _num = monthlyLimit,
-            _modifier = modifier
+            _modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(bottom = 10.dp)
@@ -41,14 +43,14 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
         SimpleDisplayCard(
             _string = stringResource(id = R.string.total_spending),
             _num = 7500,
-            _modifier = modifier
+            _modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
                 .weight(1f))
         SimpleDisplayCard(
             _string = stringResource(id = R.string.daily_reminder),
             _num = 10,
-            _modifier = modifier
+            _modifier = Modifier
                 .padding(bottom = 10.dp)
                 .fillMaxWidth()
                 .fillMaxHeight()
@@ -56,7 +58,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
         )
         Row (
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(bottom = 10.dp)
@@ -70,7 +72,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
                             stringResource(id = R.string.within_budget)
                        },
                 _num = 12,
-                _modifier = modifier
+                _modifier = Modifier
                     //.padding(10.dp)
                     .padding(end = 5.dp)
                     .weight(1f)
@@ -79,7 +81,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
             SimpleDisplayCard(
                 _string = stringResource(id = R.string.daily_target),
                 _num = 100,
-                _modifier = modifier
+                _modifier = Modifier
                     //.padding(10.dp)
                     .padding(start = 5.dp)
                     .weight(1f)
@@ -89,7 +91,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
         SimpleDisplayCard(
             _string = "Final Placeholder card",
             _num = 45,
-            _modifier = modifier
+            _modifier = Modifier
                 //.fillMaxWidth()
                 .weight(1f)
         )
