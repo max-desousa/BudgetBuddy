@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BudgetBuddy</string>
+    <string name="total_spending">Your total spending for the month is:</string>
+    <string name="monthly_limit">You have set a budget this month of:</string>
+    <string name="daily_reminder">Remaining allowance for the day:</string>
+    <string name="over_budget">You are OVER your budget by:</string>
+    <string name="within_budget">You are within your budget with this much to spare:</string>
+    <string name="daily_target">Given your spending - your daily budget is looking like:</string>
+</resources>

@@ -1,0 +1,24 @@
+Current Status/Recent Changes
+
+- Improved layout
+	- cards were not spaced well
+	- Row of cards were not filling height
+- Added card
+	- I think for this draft - this is sufficient data
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Todo's
+
+- All app functionality remains to be started.
+	- List of major goals to start working towards
+		- Add numeric keypad entry when clicking expense button
+		- Start adding viewmodel structures to protect budget var's
+		- Decide on horizontal layout possibility
+		- add logic for all cards to update their data based on two numeric values
+			- Total spent today
+			- Total spent overall
+
+- Total spent today should be incremented in tandem with overall.
+- The only thing that should be happening extra to total spent today is using
+	the clock the value should reset. 
