@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,12 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.budgetbuddy.R
 import com.example.budgetbuddy.data.main.MainViewModel
+import java.math.BigDecimal
+import java.text.NumberFormat
 
 @Composable
-fun BudgetBuddyApp(modifier: Modifier = Modifier) {
-    val monthlyLimit : Int = 69
+fun BudgetBuddyApp(
+    appViewModel : MainViewModel = MainViewModel(),
+    modifier: Modifier = Modifier
+) {
     var overBudget : Boolean = false
-    val viewModel : MainViewModel = MainViewModel()
+    val appUiState = appViewModel.uiState.collectAsState()
     Column (
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -34,7 +41,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
     ) {
         SimpleDisplayCard(
             _string = stringResource(id = R.string.monthly_limit),
-            _num = monthlyLimit,
+            _num = appUiState.value.periodLimit,
             _modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
@@ -42,14 +49,14 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
         )
         SimpleDisplayCard(
             _string = stringResource(id = R.string.total_spending),
-            _num = 7500,
+            _num = appUiState.value.periodSpending,
             _modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
                 .weight(1f))
         SimpleDisplayCard(
             _string = stringResource(id = R.string.daily_reminder),
-            _num = 10,
+            _num = BigDecimal(10.0),
             _modifier = Modifier
                 .padding(bottom = 10.dp)
                 .fillMaxWidth()
@@ -71,7 +78,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
                         } else {
                             stringResource(id = R.string.within_budget)
                        },
-                _num = 12,
+                _num = BigDecimal(12),
                 _modifier = Modifier
                     //.padding(10.dp)
                     .padding(end = 5.dp)
@@ -80,7 +87,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
             )
             SimpleDisplayCard(
                 _string = stringResource(id = R.string.daily_target),
-                _num = 100,
+                _num = BigDecimal(100),
                 _modifier = Modifier
                     //.padding(10.dp)
                     .padding(start = 5.dp)
@@ -88,12 +95,16 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
                     .fillMaxSize()
             )
         }
-        SimpleDisplayCard(
-            _string = "Final Placeholder card",
-            _num = 45,
-            _modifier = Modifier
-                //.fillMaxWidth()
-                .weight(1f)
+//        SimpleDisplayCard(
+//            _string = "Final Placeholder card",
+//            _num = BigDecimal(45),
+//            _modifier = Modifier
+//                //.fillMaxWidth()
+//                .weight(1f)
+//        )
+        EntryCard(
+            modifier = Modifier
+                .fillMaxWidth()
         )
     }
 }
@@ -101,7 +112,7 @@ fun BudgetBuddyApp(modifier: Modifier = Modifier) {
 @Composable
 fun SimpleDisplayCard(
     _string : String,
-    _num : Int,
+    _num : BigDecimal,
     _modifier : Modifier = Modifier
 ) {
     Card (
@@ -111,9 +122,36 @@ fun SimpleDisplayCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = _modifier
+                .padding(10.dp)
         ) {
             Text(text = _string, textAlign = TextAlign.Center)
-            Text(text = "${_num}", textAlign = TextAlign.Center)
+            Text(text = NumberFormat.getCurrencyInstance().format(_num), textAlign = TextAlign.Center)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun EntryCard(modifier : Modifier = Modifier) {
+    Card {
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier =  modifier
+                .padding(10.dp)
+        ) {
+            OutlinedTextField(
+                value = "Test",
+                onValueChange = {},
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            OutlinedButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Text(text = stringResource(R.string.add_expense))
+            }
         }
     }
 }

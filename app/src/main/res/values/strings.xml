@@ -6,4 +6,6 @@
     <string name="over_budget">You are OVER your budget by:</string>
     <string name="within_budget">You are within your budget with this much to spare:</string>
     <string name="daily_target">Given your spending - your daily budget is looking like:</string>
+    <string name="money_format">%d$0.2f</string>
+    <string name="add_expense">Add Expense</string>
 </resources>
