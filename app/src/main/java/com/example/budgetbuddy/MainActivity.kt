@@ -51,6 +51,7 @@ import com.example.budgetbuddy.ui.Navigation.MonthlyBudgetTracker
 import com.example.budgetbuddy.ui.Navigation.SavingsTracker
 import com.example.budgetbuddy.ui.Navigation.SettingsScreen
 import com.example.budgetbuddy.ui.Screens.SavingsScreen
+import com.example.budgetbuddy.ui.Screens.SettingsScreen
 import com.example.budgetbuddy.ui.theme.BudgetBuddyTheme
 
 
@@ -97,7 +98,7 @@ fun BudgetBuddyApplication() {
                     SavingsScreen(_items = _DEMO_SAVINGS_ITEMS_)
                 }
                 composable(route = SettingsScreen.route) {
-
+                    SettingsScreen()
                 }
             }
         }

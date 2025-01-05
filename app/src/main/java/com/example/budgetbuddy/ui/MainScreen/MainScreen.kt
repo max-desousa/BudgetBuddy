@@ -34,6 +34,7 @@ fun BudgetBuddyApp(
 ) {
     var overBudget : Boolean = false
     val appUiState = appViewModel.uiState.collectAsState()
+
     Column (
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
