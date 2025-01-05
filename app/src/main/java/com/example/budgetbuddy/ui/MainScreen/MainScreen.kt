@@ -28,7 +28,7 @@ import java.math.BigDecimal
 import java.text.NumberFormat
 
 @Composable
-fun BudgetBuddyApp(
+fun Screen_BudgetBuddyApp(
     appViewModel : MainViewModel = MainViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -163,5 +163,5 @@ fun EntryCard(modifier : Modifier = Modifier) {
 @Preview (showBackground = true)
 @Composable
 fun BudgetBuddyPreview() {
-    BudgetBuddyApp()
+    Screen_BudgetBuddyApp()
 }

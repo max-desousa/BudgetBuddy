@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.ui.Screens.main
+package com.example.budgetbuddy.ui.screens.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,18 +19,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.budgetbuddy.R
-import com.example.budgetbuddy.data.main.MainViewModel
+import com.example.budgetbuddy.ui.viewModels.AppViewModelProvider
+import com.example.budgetbuddy.ui.viewModels.MainScreen_ViewModel
 import java.math.BigDecimal
 import java.text.NumberFormat
 
 @Composable
 fun BudgetBuddyApp(
-    appViewModel : MainViewModel = MainViewModel(),
+    _mainScreenViewModel : MainScreen_ViewModel = viewModel(factory = AppViewModelProvider.factory),
     modifier: Modifier = Modifier
 ) {
     var overBudget : Boolean = false
-    val appUiState = appViewModel.uiState.collectAsState()
+    val uiState = _mainScreenViewModel.uiState.collectAsState()
     Column (
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,7 +42,7 @@ fun BudgetBuddyApp(
     ) {
         SimpleDisplayCard(
             _string = stringResource(id = R.string.monthly_limit),
-            _num = appUiState.value.periodLimit,
+            _num = BigDecimal(uiState.value.MonthlySpendingLimit),
             _modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
@@ -48,7 +50,7 @@ fun BudgetBuddyApp(
         )
         SimpleDisplayCard(
             _string = stringResource(id = R.string.total_spending),
-            _num = appUiState.value.periodSpending,
+            _num = BigDecimal(101),
             _modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
