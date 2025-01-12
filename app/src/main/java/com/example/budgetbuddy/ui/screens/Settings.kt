@@ -41,9 +41,9 @@ fun SettingsScreen(
         ) {
             Text(text = "Set Monthly Maximum Spending:")
             OutlinedTextField(
-                value = settingsUiState.value.MonthlySpendingLimit,
+                value = settingsUiState.value.UiDisplayMonthlySpendingLimit,
                 enabled = true,
-                placeholder = { Text(text = settingsUiState.value.MonthlySpendingLimit) },
+                placeholder = { Text(text = settingsUiState.value.SavedDisplayMonthlyLimit) },
                 onValueChange = {
                     settingsViewModel.updateMonthlySpendingTextField(it)
                 },
